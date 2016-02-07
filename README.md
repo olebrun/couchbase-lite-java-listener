@@ -1,3 +1,5 @@
+couchbase-lite-java-listener with CORS enable for rapid developpement with Couchbase-Lite-PhoneGap-Plugin
+
 ## couchbase-lite-java-listener
 
 This provides a webserver wrapper around Couchbase-Lite so that it can be called via HTTP REST calls.
