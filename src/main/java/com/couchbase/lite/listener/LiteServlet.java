@@ -52,6 +52,25 @@ public class LiteServlet extends HttpServlet {
     public void service(HttpServletRequest request, final HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Get ipAddress of the Origin to allow it 
+        // !! Very insecure !! -- use only for rapid development (livereload)
+        String ipAddress = request.getHeader("Origin");
+        if (ipAddress == null) {
+            // For direct attachment access from browser (ie: image)
+            ipAddress = "http://localhost";
+        } else {
+            // Handle OPTIONS Request in order to respond to CORS
+            response.setHeader("Access-Control-Allow-Credentials", "true"); // Basic Atuh
+            response.setHeader("Access-Control-Allow-Origin", ipAddress);
+            response.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+            response.setHeader("Access-Control-Allow-Headers", "content-type, accept, origin, authorization, withCredentials");
+            if("OPTIONS".equals(request.getMethod())){
+                Log.v(Log.TAG_LISTENER, "Handle OPTIONS Request in order to respond to CORS");
+                response.setStatus(200);
+                return;
+            }
+        }
+
         Credentials requestCredentials = credentialsWithBasicAuthentication(request);
 
         if (allowedCredentials != null && !allowedCredentials.empty()) {
