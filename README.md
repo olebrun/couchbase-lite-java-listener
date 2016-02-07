@@ -29,7 +29,9 @@ return builder.build();
 
 ## Build
 
+```
 cd libraries
 git clone https://github.com/couchbase/couchbase-lite-java-core.git
 mv settings.gradle.sample settings.gradle
 ./gradlew build
+```
