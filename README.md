@@ -27,3 +27,9 @@ return builder.build();
 
 (the key point being to use `useExpectContinue(false)`)
 
+## Build
+
+cd libraries
+git clone https://github.com/couchbase/couchbase-lite-java-core.git
+mv settings.gradle.sample settings.gradle
+./gradlew build
